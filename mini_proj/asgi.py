@@ -2,18 +2,18 @@ import os
 import django
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
-from trading.routing import websocket_urlpatterns
 from channels.auth import AuthMiddlewareStack
+from trading.routing import websocket_urlpatterns
 
-# Ensure Django settings are properly loaded before starting ASGI
+# Set Django settings before setup
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mini_proj.settings")
 django.setup()
 
 application = ProtocolTypeRouter(
     {
-        "http": get_asgi_application(),  # Handles HTTP requests
+        "http": get_asgi_application(),
         "websocket": AuthMiddlewareStack(
-            URLRouter(websocket_urlpatterns)
+            URLRouter(websocket_urlpatterns)  # Routes WebSockets to consumers
         ),
     }
 )

@@ -34,22 +34,32 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-
-    'users',
-    'products',
-    'trading',
-    'sales',
-    'analytics',
-    'notifications'
-
+    "daphne",
+    "channels",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "users",
+    "products",
+    "trading",
+    "sales",
+    "analytics",
 ]
+
+
+
+ASGI_APPLICATION = "mini_proj.asgi.application"
+
+# Redis settings (for handling WebSocket connections)
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Use Redis in production
+    }
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

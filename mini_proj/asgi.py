@@ -1,16 +1,19 @@
-"""
-ASGI mini_proj for mini_proj project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
-"""
-
 import os
-
+import django
 from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from trading.routing import websocket_urlpatterns
+from channels.auth import AuthMiddlewareStack
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mini_proj.settings')
+# Ensure Django settings are properly loaded before starting ASGI
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mini_proj.settings")
+django.setup()
 
-application = get_asgi_application()
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),  # Handles HTTP requests
+        "websocket": AuthMiddlewareStack(
+            URLRouter(websocket_urlpatterns)
+        ),
+    }
+)

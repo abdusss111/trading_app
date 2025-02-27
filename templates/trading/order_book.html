@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Order Book</title>
+    <script>
+        const socket = new WebSocket("ws://127.0.0.1:8000/ws/trading/");
+
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const orderList = document.getElementById("orders");
+            const orderItem = document.createElement("li");
+            orderItem.textContent = `Order #${data.order_id}: ${data.order_type} ${data.quantity} units at $${data.price}`;
+            orderList.prepend(orderItem);
+        };
+
+        function placeOrder(orderType) {
+            const userId = 1; // Change to actual logged-in user ID
+            const productId = 1; // Change to actual product ID
+            const quantity = Math.floor(Math.random() * 10) + 1;
+            const price = (Math.random() * 100).toFixed(2);
+
+            socket.send(JSON.stringify({
+                user_id: userId,
+                product_id: productId,
+                order_type: orderType,
+                quantity: quantity,
+                price: price
+            }));
+        }
+    </script>
+</head>
+<body>
+    <h2>Live Order Book</h2>
+    <button onclick="placeOrder('buy')">Place Buy Order</button>
+    <button onclick="placeOrder('sell')">Place Sell Order</button>
+    <ul id="orders"></ul>
+</body>
+</html>

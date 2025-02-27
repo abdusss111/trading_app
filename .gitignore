@@ -1,0 +1,10 @@
+/myEnv
+ .env 
+.idea 
+.venv 
+.DS_Store 
+back_demo/
+.idea
+ back_demo/
+.env
+__pycache__/

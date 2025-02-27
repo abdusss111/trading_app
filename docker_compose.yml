@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=0
+      - DATABASE_URL=postgres://user:password@db:5432/sales_trading_db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=sales_trading_db

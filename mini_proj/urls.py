@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import sales.urls, users.urls, analytics.urls, products.urls, trading.urls
+
+import notifications
+import sales.urls, users.urls, analytics.urls, products.urls, trading.urls, notifications.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,5 @@ urlpatterns = [
     path('analytics/', include(analytics.urls)),
     path('products/', include(products.urls)),
     path('trading/', include(trading.urls)),
+    path('notifications/', include(notifications.urls)),
 ]

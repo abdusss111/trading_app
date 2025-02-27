@@ -7,6 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 8000
-
-CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "mini_proj.asgi:application"]
+# Start Celery worker
+CMD ["celery", "-A", "mini_proj", "worker", "--loglevel=info"]

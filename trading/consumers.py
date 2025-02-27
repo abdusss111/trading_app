@@ -30,3 +30,9 @@ class OrderBookConsumer(AsyncWebsocketConsumer):
     async def send_order(self, event):
         print("Sending to Clients:", event)  # Debugging
         await self.send(text_data=json.dumps(event))
+
+    async def send_trade_notification(self, event):
+        await self.send(text_data=json.dumps({
+            "type": "trade_notification",
+            "message": f"Trade executed: {event['trade_id']}"
+        }))

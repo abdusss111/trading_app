@@ -63,9 +63,10 @@ CHANNEL_LAYERS = {
     },
 }
 
-CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
+CELERY_BROKER_URL = "redis://redis_cache:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis_cache:6379/0"
 
 
 
@@ -103,10 +104,11 @@ WSGI_APPLICATION = 'mini_proj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import os
 import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default=getenv('DATABASE_URL'))
 
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL', 'postgres://postgres:postgres@db:5432/postgres'))
 }
 
 

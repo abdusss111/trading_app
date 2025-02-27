@@ -8,3 +8,4 @@ back_demo/
  back_demo/
 .env
 __pycache__/
+.dockerignore

@@ -1,5 +1,7 @@
 # 🚀 Trading App (Django + Daphne + Celery + Redis )
 
+##link to video - https://www.youtube.com/watch?v=w-KN1kh_ga8 ##
+
 A real-time trading platform built with **Django**, **Daphne**, **Celery**, and **WebSockets**. This application supports user authentication, real-time order execution, invoice generation, and automated analytics reporting.
 
 ## 📌 Features

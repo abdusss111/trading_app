@@ -32,7 +32,7 @@ Create a `.env` file in the project root:
 ```ini
 DEBUG=True
 SECRET_KEY=your_secret_key
-ALLOWED_HOSTS=localhost,127.0.0.1
+ALLOWED_HOSTS=127.0.0.1,127.0.0.1
 DATABASE_URL=postgres://postgres:postgres@postgres_db:5432/postgres
 REDIS_URL=redis://redis_cache:6379/0
 ```
@@ -41,17 +41,17 @@ REDIS_URL=redis://redis_cache:6379/0
 ```bash
 docker-compose up --build
 ```
-🚀 The app will be available at: **http://localhost:8000**
+🚀 The app will be available at: **http://127.0.0.1:8000**
 
 ---
 
 ## 📡 WebSockets (Real-time Trading)
 
 - **Live trading updates** are handled using **Daphne** and **Django Channels**.
-- **WebSocket Endpoint**: `ws://localhost:8000/ws/trading/`
+- **WebSocket Endpoint**: `ws://127.0.0.1:8000/ws/trading/`
 - Example **JavaScript WebSocket Client**:
 ```javascript
-let socket = new WebSocket("ws://localhost:8000/ws/trading/");
+let socket = new WebSocket("ws://127.0.0.1:8000/ws/trading/");
 socket.onmessage = (event) => console.log("Received:", event.data);
 socket.onopen = () => socket.send(JSON.stringify({"action": "place_order", "order_id": 123}));
 ```
@@ -61,10 +61,10 @@ socket.onopen = () => socket.send(JSON.stringify({"action": "place_order", "orde
 ## 📊 API Documentation
 
 ### **Swagger UI**  
-🔗 [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+🔗 [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
 
 ### **Redoc UI**  
-🔗 [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
+🔗 [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
 
 ### **Example Endpoints**
 | Method | Endpoint | Description |
@@ -97,10 +97,10 @@ docker-compose exec web python manage.py generate_test_data
 
 ```bash
 # Test User Registration
-curl -X POST http://localhost:8000/users/register/ -d "username=test&password=123456"
+curl -X POST http://127.0.0.1:8000/users/register/ -d "username=test&password=123456"
 
 # Test WebSocket Connection (Using wscat)
-wscat -c ws://localhost:8000/ws/trading/
+wscat -c ws://127.0.0.1:8000/ws/trading/
 ```
 
 ---

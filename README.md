@@ -1,7 +1,3 @@
-Here’s a well-structured and **professional** README file for your **Django Trading App**:  
-
----
-
 ### **README.md**
 
 # 🚀 Trading App (Django + Daphne + Celery + Redis )
@@ -120,24 +116,4 @@ docker-compose down
 - **PostgreSQL** (Database)
 - **Docker & Docker Compose** (Deployment)
 
----
 
-## 📌 Contributors
-- [Your Name](https://github.com/yourusername)
-
----
-
-## 📜 License
-This project is licensed under the **MIT License**.
-```
-
----
-
-### **Changes & Improvements:**
-- Clear **setup instructions** with **Docker**.
-- **WebSocket example** for real-time trading.
-- **Swagger API documentation** link.
-- **Test commands** using **cURL** and **WebSocket tools**.
-- **Well-structured and professional tone**.
-
-Let me know if you need modifications! 🚀

@@ -25,3 +25,33 @@ def generate_invoice(request, order_id):
 
     except SalesOrder.DoesNotExist:
         return HttpResponse("Order not found", status=404)
+
+
+from rest_framework import generics, permissions
+from .models import SalesOrder, Invoice
+from .serializers import SalesOrderSerializer, InvoiceSerializer
+
+# List & Create Sales Orders
+class SalesOrderListCreateView(generics.ListCreateAPIView):
+    queryset = SalesOrder.objects.all()
+    serializer_class = SalesOrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+# Retrieve, Update & Delete a Sales Order
+class SalesOrderDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = SalesOrder.objects.all()
+    serializer_class = SalesOrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+# List & Create Invoices
+class InvoiceListCreateView(generics.ListCreateAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+# Retrieve, Update & Delete an Invoice
+class InvoiceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+    permission_classes = [permissions.IsAuthenticated]
+

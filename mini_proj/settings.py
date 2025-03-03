@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-ytqnb6juoke3&3h_o69+@(m=koy$3ok@m82@lyy2+xfh$jf^i2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["trading-app-bsjx.onrender.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["trading-app-bsjx.onrender.com", "127.0.0.1", "localhost", "*"]
 
 
 # Application definition
@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "rest_framework",
+    'drf_yasg',
+
     "users",
     "products",
     "trading",
@@ -151,12 +155,17 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+if not DEBUG:
+    STATIC_ROOT = '/app/staticfiles'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

@@ -4,7 +4,7 @@ Here’s a well-structured and **professional** README file for your **Django Tr
 
 ### **README.md**
 
-# 🚀 Trading App (Django + Daphne + Celery)
+# 🚀 Trading App (Django + Daphne + Celery + Redis )
 
 A real-time trading platform built with **Django**, **Daphne**, **Celery**, and **WebSockets**. This application supports user authentication, real-time order execution, invoice generation, and automated analytics reporting.
 
